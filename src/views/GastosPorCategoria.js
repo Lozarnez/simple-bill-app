@@ -1,9 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { Header, ContenedorHeader, Titulo } from '../components/Header';
+import BotonRegresar from '../components/BotonRegresar';
 
 const GastosPorCategoria = () => {
   return (
-    <div>GastosPorCategoria</div>
-  )
+    <>
+      <Helmet>
+        <title>Gastos por categoría</title>
+      </Helmet>
+      <Header>
+        <BotonRegresar />
+        <Titulo>Gastos por categoría</Titulo>
+      </Header>
+    </>
+  );
 }
 
 export default GastosPorCategoria;

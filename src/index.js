@@ -25,8 +25,7 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <link rel="shortcut icon" href={favicon} type="image/png" sizes='16x16' />
-        <title>Gastos</title>
+        <link rel="shortcut icon" href={favicon} type="image/x-icon" sizes='16x16' />
       </Helmet>
       <BrowserRouter>
         <Contenedor>
