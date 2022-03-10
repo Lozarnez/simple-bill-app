@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
-import { Header, ContenedorHeader, Titulo } from "../components/Header";
+import { Header, Titulo } from "../components/Header";
 import BotonRegresar from "../components/BotonRegresar";
 
 const ListaGastos = () => {
