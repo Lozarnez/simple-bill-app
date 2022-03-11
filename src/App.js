@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Header, Titulo, ContenedorHeader, ContenedorBotones } from './components/Header';
-import { Boton } from './components/Boton';
+import Boton from './components/Boton';
 
 const App = () => {
   return (

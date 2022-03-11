@@ -26,4 +26,4 @@ const Boton = styled(Link)`
   }
 `;
 
-export { Boton };
+export default Boton;

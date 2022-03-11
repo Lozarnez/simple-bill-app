@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { ContenedorHeader, Header, Titulo } from "../components/Header";
 import { ContenedorBoton, Formulario, Input } from "../components/Formulario";
-import { Boton } from "../components/Boton";
+import Boton from "../components/Boton";
 import { ReactComponent as SvgLogin } from "../img/login.svg";
 
 const InicioSesion = () => {

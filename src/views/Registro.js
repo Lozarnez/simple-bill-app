@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Helmet } from "react-helmet";
+import { useNavigate } from 'react-router-dom';
+import { auth, createUserWithEmailAndPassword } from '../firebase/config';
 import { ContenedorHeader, Header, Titulo } from "../components/Header";
 import { ContenedorBoton, Formulario, Input } from "../components/Formulario";
-import { Boton } from "../components/Boton";
+import Boton from "../components/Boton";
+import Alerta from "../components/Alerta";
 import { ReactComponent as SvgLogin } from "../img/registro.svg";
 
 const Registro = () => {
+  const navigate = useNavigate();
+  const [alertaState, setAlertaState] = useState(false);
+  const [alerta, setAlerta] = useState({
+    tipo: "",
+    mensaje: "",
+  });
   const [formulario, setFormulario] = useState({
     email: "",
     password: "",
@@ -20,24 +29,52 @@ const Registro = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    setAlertaState(false);
+    setAlerta({ tipo: "", mensaje: "" });
     const { email, password, password2 } = formulario;
 
     const RegEx = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
     if (!RegEx.test(email)) {
-      alert("El email no es válido");
+      setAlertaState(true);
+      setAlerta({ tipo: "error", mensaje: "El correo no es válido" });
       return;
     }
 
     if(!email || !password || !password2){
-      alert("Todos los campos son obligatorios");
+      setAlertaState(true);
+      setAlerta({ tipo: "error", mensaje: "Todos los campos son obligatorios" });
       return;
     }
 
     if(password !== password2){
-      alert("Las contraseñas no coinciden");
+      setAlertaState(true);
+      setAlerta({ tipo: "error", mensaje: "Las contraseñas no coinciden" });
       return;
+    }
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      navigate("/");
+    } catch (error) {
+      setAlertaState(true);
+      let mensaje;
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          mensaje = "El email ya está en uso";
+          break;
+        case "auth/invalid-email":
+          mensaje = "El email no es válido";
+          break;
+        case "auth/weak-password":
+          mensaje = "La contraseña es muy débil. Debe tener al menos 6 caracteres";
+          break;
+        default:
+          mensaje = "Error desconocido";
+          break;
+      }
+      setAlerta({ tipo: "error", mensaje });
     }
   }
 
@@ -83,6 +120,12 @@ const Registro = () => {
           </Boton>
         </ContenedorBoton>
       </Formulario>
+      <Alerta
+        tipo={alerta.tipo}
+        mensaje={alerta.mensaje}
+        alertaState={alertaState}
+        setAlertaState={setAlertaState}
+      />
     </>
   );
 };
