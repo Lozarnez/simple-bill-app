@@ -12,10 +12,7 @@ import { ReactComponent as SvgLogin } from "../img/registro.svg";
 const Registro = () => {
   const navigate = useNavigate();
   const [alertaState, setAlertaState] = useState(false);
-  const [alerta, setAlerta] = useState({
-    tipo: "",
-    mensaje: "",
-  });
+  const [alerta, setAlerta] = useState({ tipo: "", mensaje: "" });
   const [formulario, setFormulario] = useState({
     email: "",
     password: "",
