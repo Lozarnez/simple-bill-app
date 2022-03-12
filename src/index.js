@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import WebFont from 'webfontloader';
 import {Helmet} from 'react-helmet';
 import './index.css';
+import { AuthContext, AuthProvider } from './context/Auth';
 import favicon from './img/logo.png';
 import App from './App';
 import Contenedor from './components/Contenedor';
@@ -27,18 +28,22 @@ const Index = () => {
       <Helmet>
         <link rel="shortcut icon" href={favicon} type="image/x-icon" sizes='16x16' />
       </Helmet>
-      <BrowserRouter>
-        <Contenedor>
-          <Routes>
-            <Route path="/iniciar-sesion" element={<InicioSesion />} />
-            <Route path="/registro" element={<Registro />} />
-            <Route path="/gastos" element={<ListaGastos />} />
-            <Route path="/gasto/:id" element={<GastoEditar />} />
-            <Route path="/categorias" element={<GastosPorCategoria />} />
-            <Route path="/" element={<App />} />
-          </Routes>
-        </Contenedor>
-      </BrowserRouter>
+
+      <AuthProvider>
+        <BrowserRouter>
+          <Contenedor>
+            <Routes>
+              <Route path="/iniciar-sesion" element={<InicioSesion />} />
+              <Route path="/registro" element={<Registro />} />
+              <Route path="/gastos" element={<ListaGastos />} />
+              <Route path="/gasto/:id" element={<GastoEditar />} />
+              <Route path="/categorias" element={<GastosPorCategoria />} />
+              <Route path="/" element={<App />} />
+            </Routes>
+          </Contenedor>
+        </BrowserRouter>
+      </AuthProvider>
+
       <Fondo />
     </>
   );

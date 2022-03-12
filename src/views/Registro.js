@@ -31,17 +31,17 @@ const Registro = () => {
     setAlertaState(false);
     setAlerta({ tipo: "", mensaje: "" });
     const { email, password, password2 } = formulario;
-
     const RegEx = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
-    if (!RegEx.test(email)) {
+
+    if (!email || !password || !password2) {
       setAlertaState(true);
-      setAlerta({ tipo: "error", mensaje: "El correo no es válido" });
+      setAlerta({ tipo: "error", mensaje: "Todos los campos son obligatorios" });
       return;
     }
 
-    if(!email || !password || !password2){
+    if (!RegEx.test(email)) {
       setAlertaState(true);
-      setAlerta({ tipo: "error", mensaje: "Todos los campos son obligatorios" });
+      setAlerta({ tipo: "error", mensaje: "El correo no es válido" });
       return;
     }
 
