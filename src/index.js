@@ -14,6 +14,7 @@ import InicioSesion from './views/InicioSesion';
 import ListaGastos from './views/ListaGastos';
 import GastoEditar from './views/GastoEditar';
 import GastosPorCategoria from './views/GastosPorCategoria';
+import RutaPrivada from './views/RutaPrivada';
 
 WebFont.load({
   google: {
@@ -35,10 +36,28 @@ const Index = () => {
             <Routes>
               <Route path="/iniciar-sesion" element={<InicioSesion />} />
               <Route path="/registro" element={<Registro />} />
-              <Route path="/gastos" element={<ListaGastos />} />
-              <Route path="/gasto/:id" element={<GastoEditar />} />
-              <Route path="/categorias" element={<GastosPorCategoria />} />
-              <Route path="/" element={<App />} />
+
+              <Route path='/gastos' element={
+                <RutaPrivada>
+                  <ListaGastos />
+                </RutaPrivada>
+              } />
+              <Route path='/gastos/:id' element={
+                <RutaPrivada>
+                  <GastoEditar />
+                </RutaPrivada>
+              } />
+              <Route path='/categorias' element={
+                <RutaPrivada>
+                  <GastosPorCategoria />
+                </RutaPrivada>
+              } />
+              <Route path='/' element={
+                <RutaPrivada>
+                  <App />
+                </RutaPrivada>
+              } />
+
             </Routes>
           </Contenedor>
         </BrowserRouter>
