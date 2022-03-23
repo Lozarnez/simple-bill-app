@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import WebFont from 'webfontloader';
 import {Helmet} from 'react-helmet';
 import './index.css';
-import { AuthContext, AuthProvider } from './context/Auth';
+import { AuthProvider } from './context/Auth';
 import favicon from './img/logo.png';
 import App from './App';
 import Contenedor from './components/Contenedor';
