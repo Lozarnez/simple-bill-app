@@ -20,4 +20,9 @@ getAnalytics(app);
 const auth = getAuth();
 const firestore = getFirestore();
 
-export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, firestore };
+export {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  firestore
+};

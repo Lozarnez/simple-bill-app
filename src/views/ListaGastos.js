@@ -5,7 +5,8 @@ import { Header, Titulo } from "../components/Header";
 import BotonRegresar from "../components/BotonRegresar";
 
 const ListaGastos = () => {
-  const {usuario} = useAuth();
+  const { usuario } = useAuth();
+  console.log(usuario);
 
   return (
     <>
